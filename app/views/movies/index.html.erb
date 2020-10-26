@@ -1,0 +1,12 @@
+<h1>All Movies</h1>
+
+<table>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to 'Add Movie', new_movie_path %>
