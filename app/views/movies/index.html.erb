@@ -4,6 +4,7 @@
   <% @movies.each do |movie| %>
     <tr>
       <td><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</td>
+      <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
     </tr>
   <% end %>
 </table>

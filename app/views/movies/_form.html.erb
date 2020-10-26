@@ -1,0 +1,29 @@
+<%= form_with model: @movie, local: true do |form| %>
+
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:
+      </h2>
+      <ul>
+        <% @movie.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :year %><br>
+    <%= form.select :year, 1990..(Date.today.year + 5), :selected => @movie.year.present? ? @movie.year : Date.today.year %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
