@@ -1,7 +1,16 @@
-<h1><%= @movie.title %></h1>
+<h1>View Movie: <%= @movie.title %></h1>
 
 <p>
-  <strong>Year:</strong><%= @movie.year %>
+  <strong>Year:</strong> <%= @movie.year %>
+</p>
+
+<p>
+  <strong>Cast:</strong>
+  <ul>
+  <% @movie.actors.each do |actor| %>
+    <li><%= actor.name %></li>
+  <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %><br/>

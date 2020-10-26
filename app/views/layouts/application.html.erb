@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MoviesApp</title>
+    <title>Movies App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="top_menu">
+      <%= link_to 'Movies', movies_path %> |
+      <%= link_to 'Actors', actors_path %>
+    </div>
+    <div id="content"><%= content_for?(:content) ? yield(:content) : yield %></div>
   </body>
 </html>
