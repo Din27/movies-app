@@ -5,4 +5,7 @@
 </p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %><br/>
+<%= link_to 'Delete', movie_path(@movie),
+            method: :delete,
+            data: { confirm: "Are you sure you wish to delete the movie '#{@movie.title}?'" } %><br/>
 <%= link_to 'Back', movies_path %>
