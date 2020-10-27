@@ -6,12 +6,12 @@
 
 <p>
   <strong>Movies:</strong>
-  <ul>
-    <% @actor.movies.each do |movie| %>
-      <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
-    <% end %>
-</ul>
 </p>
+<ul>
+  <% @actor.movies.each do |movie| %>
+    <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
+  <% end %>
+</ul>
 
 
 <%= link_to 'Edit', edit_actor_path(@actor) %><br/>
