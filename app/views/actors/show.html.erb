@@ -4,6 +4,16 @@
   <strong>Date of Birth:</strong> <%= @actor.dob %>
 </p>
 
+<p>
+  <strong>Movies:</strong>
+  <ul>
+    <% @actor.movies.each do |movie| %>
+      <li><%= link_to movie.title, movie_path(movie) %> (<%= movie.year %>)</li>
+    <% end %>
+</ul>
+</p>
+
+
 <%= link_to 'Edit', edit_actor_path(@actor) %><br/>
 <%= link_to 'Delete', actor_path(@actor),
             method: :delete,
