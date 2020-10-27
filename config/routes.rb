@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :actors
 
   root 'movies#index'
+
+  mount MoviesApp::Base => '/'
 end
