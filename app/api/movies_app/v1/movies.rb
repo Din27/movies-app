@@ -44,11 +44,11 @@ module MoviesApp
           requires :year, type: Integer, desc: 'Movie year of creation.'
         end
         post do
-          @movie = Movie.new(title: params[:title], year: params[:year])
+          movie = Movie.new(title: params[:title], year: params[:year])
 
-          if @movie.save
+          if movie.save
+            header 'Location', "#{request.url}/#{movie.id}"
             status 201
-            # TODO Location header
           else
             # TODO it can probably be 500. how to distinguish?
             error! :failed_to_create, 400
