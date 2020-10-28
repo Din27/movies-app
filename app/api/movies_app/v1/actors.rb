@@ -2,8 +2,6 @@ module MoviesApp
   module V1
     class Actors < Grape::API
       version 'v1', using: :path
-      format :json
-      prefix :api
 
       resource :actors do
 

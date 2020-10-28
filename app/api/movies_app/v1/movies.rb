@@ -1,12 +1,12 @@
+require 'grape-swagger'
+
 module MoviesApp
   module V1
     class Movies < Grape::API
       version 'v1', using: :path
-      format :json
-      prefix :api
 
       resource :movies do
-        desc 'Return list of movies.'
+        desc 'Return list of movies.' #, success: { code: 200, model: Movie, message: 'Found' } TODO not compiling. why?
         get do
           Movie.all
         end
@@ -38,6 +38,7 @@ module MoviesApp
           end
         end
 
+        # TODO grape-entity? or custom parsers? probably shouldn't just accept params one by one?
         desc 'Create a movie.'
         params do
           requires :title, type: String, desc: 'Movie title.'
