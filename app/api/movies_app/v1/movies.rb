@@ -5,13 +5,20 @@ module MoviesApp
     class Movies < Grape::API
       version 'v1', using: :path
 
+      # TODO fix documenting models. add parsers/entity?
+
       resource :movies do
-        desc 'Return list of movies.' #, success: { code: 200, model: Movie, message: 'Found' } TODO not compiling. why?
+        desc 'Returns all movies.' do
+          success code: 200, message: 'Found successfully'
+        end
         get do
           Movie.all
         end
 
-        desc 'Return a movie.'
+        desc 'Returns a movie.' do
+          success [ code: 200, message: 'Found successfully' ]
+          failure [ code: 404, message: 'Not found with this ID' ]
+        end
         params do
           requires :id, type: Integer, desc: 'Movie ID.'
           optional :include_actors, type: Boolean, default: false, desc: 'Includes list of actors if set to true.'
@@ -39,7 +46,10 @@ module MoviesApp
         end
 
         # TODO grape-entity? or custom parsers? probably shouldn't just accept params one by one?
-        desc 'Create a movie.'
+        desc 'Creates a movie.' do
+          success [ code: 201, message: 'Created successfully', headers: { 'Location' => { description: 'Location of resource', type: 'string' } } ]
+          failure [ code: 400, message: 'Failed to create due to object validation' ]
+        end
         params do
           requires :title, type: String, desc: 'Movie title.'
           requires :year, type: Integer, desc: 'Movie year of creation.'
@@ -56,7 +66,13 @@ module MoviesApp
           end
         end
 
-        desc 'Update a movie. Do NOT create a movie if id is not found.'
+        desc 'Updates a movie. Does NOT create a movie if id is not found.' do
+          success [ code: 204, message: 'Updated successfully' ]
+          failure [
+              { code: 400, message: 'Failed to create due to object validation' },
+              { code: 404, message: 'Not found with this ID' },
+          ]
+        end
         params do
           requires :id, type: Integer, desc: 'Movie ID.'
           requires :title, type: String, desc: 'Movie title.'
@@ -76,7 +92,10 @@ module MoviesApp
           end
         end
 
-        desc 'Delete a movie.'
+        desc 'Deletes a movie.' do
+          success [ code: 204, message: 'Deleted successfully' ]
+          failure [ code: 404, message: 'Not found with this ID' ]
+        end
         params do
           requires :id, type: Integer, desc: 'Movie ID.'
         end

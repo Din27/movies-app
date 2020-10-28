@@ -109,6 +109,8 @@ GEM
       rack-accept
     grape-swagger (1.3.0)
       grape (~> 1.3)
+    grape-swagger-ui (2.2.8)
+      railties (>= 3.1)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
@@ -233,6 +235,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   grape
   grape-swagger
+  grape-swagger-ui
   jbuilder (~> 2.7)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)

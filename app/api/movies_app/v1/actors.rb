@@ -5,12 +5,17 @@ module MoviesApp
 
       resource :actors do
 
-        desc 'Return list of actors.'
+        desc 'Returns all actors.' do
+          success code: 200, message: 'Found successfully'
+        end
         get do
           Actor.all
         end
 
-        desc 'Return an actor.'
+        desc 'Returns an actor.' do
+          success [ code: 200, message: 'Found successfully' ]
+          failure [ code: 404, message: 'Not found with this ID' ]
+        end
         params do
           requires :id, type: Integer, desc: 'Actor ID.'
           optional :include_movies, type: Boolean, default: false, desc: 'Includes list of movies if set to true'
