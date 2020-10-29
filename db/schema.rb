@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 2020_10_26_203747) do
   end
 
   create_table "actors_movies", id: false, force: :cascade do |t|
-    t.integer "movie_id"
     t.integer "actor_id"
-    t.index ["actor_id"], name: "index_movies_actors_on_actor_id"
-    t.index ["movie_id"], name: "index_movies_actors_on_movie_id"
+    t.integer "movie_id"
+    t.index ["actor_id"], name: "index_actors_movies_on_actor_id"
+    t.index ["movie_id"], name: "index_actors_movies_on_movie_id"
   end
 
   create_table "movies", force: :cascade do |t|
