@@ -12,7 +12,8 @@
   <body>
     <div id="top_menu">
       <%= link_to 'Movies', movies_path %> |
-      <%= link_to 'Actors', actors_path %>
+      <%= link_to 'Actors', actors_path %> |
+      <%= link_to 'API (Swagger)', "/api/swagger?url=/api/swagger_doc.json" %>
     </div>
     <div id="content"><%= content_for?(:content) ? yield(:content) : yield %></div>
   </body>
